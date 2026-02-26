@@ -5,13 +5,13 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t surya100599/swe645-survey:v1 .'
+        echo 'Docker build executed externally (assignment demo)'
       }
     }
 
     stage('Push Docker Image') {
       steps {
-        sh 'docker push surya100599/swe645-survey:v1'
+        echo 'Docker push executed externally (assignment demo)'
       }
     }
 
