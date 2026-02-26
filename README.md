@@ -188,23 +188,24 @@ SWE 645-Assignment 2/
 
 ### Homepage Running
 
-![Homepage](screenshots/homepage.png)
+![Homepage](Screenshots/hompage.png)
 
 ### Docker Hub Repository
 
-![DockerHub](screenshots/dockerhub.png)
+![DockerHub](Screenshots/dockerhub.png)
 
 ### Kubernetes Pods Running
 
-![Pods](screenshots/pods.png)
+![Pods](Screenshots/pods.png)
 
 ### Pod Auto-Healing
 
-![Autoheal](screenshots/autoheal.png)
+![Autoheal](Screenshots/autoheal.png)
 
 ### Jenkins Pipeline Success
 
-![Jenkins](screenshots/jenkins.png)
+![Jenkins](Screenshots/jenkins.png)
+
 
 ---
 
