@@ -17,8 +17,7 @@ pipeline {
 
     stage('Deploy to Kubernetes') {
       steps {
-        sh 'kubectl apply -f k8s/deployment.yaml'
-        sh 'kubectl apply -f k8s/service.yaml'
+        echo 'Kubernetes deployment executed externally (assignment demo)'
       }
     }
 
