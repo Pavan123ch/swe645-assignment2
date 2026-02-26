@@ -1,0 +1,75 @@
+<!--
+Name: Surya Pavan Kumar Chilukuri
+Course: SWE 645
+Assignment: Homework Assignment 1
+Description: Homepage for SWE645 deployed on AWS S3 and EC2.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SWE645 - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-box {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid #198754;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="hero">
+    <div class="card-box">
+
+        <h1 class="text-primary">Welcome to SWE645</h1>
+        <p class="text-muted">Building Web Applications on AWS Cloud</p>
+
+        <img src="Profile.jpg" alt="Profile Photo" class="profile-img">
+
+
+        <p class="mt-4">
+            Hello! I am Surya Pavan Kumar Chilukuri, currently pursuing my Master’s
+            in Information Systems at George Mason University. This webpage is part
+            of my SWE 645 assignment focused on web development and cloud deployment.
+        </p>
+
+        <div class="mt-4">
+            <a href="survey.html" class="btn btn-success px-4">Student Survey</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

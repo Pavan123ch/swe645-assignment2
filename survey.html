@@ -1,0 +1,222 @@
+<!--
+Name: Surya Pavan Kumar Chilukuri
+Course: SWE 645
+Assignment: Homework Assignment 1
+Description: Homepage for SWE645 deployed on AWS S3 and EC2.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Survey</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #006633;
+        }
+
+        .header-box {
+            border: 5px solid #006633;
+            box-shadow: 3px 3px 10px gray;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: white;
+        }
+
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <div class="header-box text-center">
+        <h1>CS Department Student Survey</h1>
+        <p class="text-muted">We value your feedback</p>
+    </div>
+
+    <form action="#" method="post" autocomplete="on">
+
+        <!-- Personal Info -->
+        <h4 class="mb-3">Personal Information</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">First Name <span class="required">*</span></label>
+                <input type="text" class="form-control" name="firstName" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Last Name <span class="required">*</span></label>
+                <input type="text" class="form-control" name="lastName" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Street Address <span class="required">*</span></label>
+            <input type="text" class="form-control" name="street" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">City <span class="required">*</span></label>
+                <input type="text" class="form-control" name="city" required>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">State <span class="required">*</span></label>
+                <input type="text" class="form-control" name="state" required>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Zip <span class="required">*</span></label>
+                <input type="text" class="form-control" name="zip" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Telephone <span class="required">*</span></label>
+            <input type="tel" class="form-control" name="phone" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Date of Survey <span class="required">*</span></label>
+            <input type="date" class="form-control" name="surveyDate" required>
+        </div>
+
+        <!-- Checkboxes -->
+        <h4 class="mt-4">What did you like most?</h4>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="likes" value="students" id="students">
+            <label class="form-check-label" for="students">Students</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="likes" value="location" id="location">
+            <label class="form-check-label" for="location">Location</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="likes" value="campus" id="campus">
+            <label class="form-check-label" for="campus">Campus</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="likes" value="atmosphere" id="atmosphere">
+            <label class="form-check-label" for="atmosphere">Atmosphere</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="likes" value="dorm" id="dorm">
+            <label class="form-check-label" for="dorm">Dorm Rooms</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="likes" value="sports" id="sports">
+            <label class="form-check-label" for="sports">Sports</label>
+        </div>
+
+        <!-- Radio Buttons -->
+        <h4 class="mt-4">How did you hear about us?</h4>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="referral" value="friends" id="friends">
+            <label class="form-check-label" for="friends">Friends</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="referral" value="television" id="tv">
+            <label class="form-check-label" for="tv">Television</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="referral" value="internet" id="internet">
+            <label class="form-check-label" for="internet">Internet</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="referral" value="other" id="other">
+            <label class="form-check-label" for="other">Other</label>
+        </div>
+
+        <!-- Dropdown -->
+        <div class="mt-4 mb-3">
+            <label class="form-label">Would you recommend us?</label>
+            <select class="form-select" name="recommend">
+                <option>Very Likely</option>
+                <option>Likely</option>
+                <option>Unlikely</option>
+            </select>
+        </div>
+
+        <!-- Raffle -->
+        <div class="mb-3">
+            <label class="form-label">Raffle (Enter at least 10 comma separated numbers 1-100)</label>
+            <input type="text" class="form-control" name="raffle">
+        </div>
+
+        <!-- Comments -->
+        <div class="mb-3">
+            <label class="form-label">Additional Comments</label>
+            <textarea class="form-control" name="comments" rows="4"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-warning">Cancel</button>
+
+    </form>
+
+<div class="text-center mt-4">
+            <a href="index.html" class="btn btn-outline-primary">
+                Back to Home
+            </a>
+        </div>
+
+    </div>
+</div>
+<script>
+function validateRaffle() {
+    const raffleInput = document.getElementById("raffle").value.trim();
+
+    // Split by commas
+    const numbers = raffleInput.split(",");
+
+    if (numbers.length < 10) {
+        alert("Please enter at least 10 comma-separated numbers.");
+        return false;
+    }
+
+    for (let num of numbers) {
+        const value = parseInt(num.trim());
+
+        if (isNaN(value) || value < 1 || value > 100) {
+            alert("All numbers must be between 1 and 100.");
+            return false;
+        }
+    }
+
+    alert("Form submitted successfully!");
+    return true;
+}
+</script>
+
+</body>
+</html>
+
