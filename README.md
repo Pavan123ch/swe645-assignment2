@@ -1,220 +1,222 @@
-# SWE 645 – Assignment 2
+---
 
-## Containerized Web Application with Kubernetes Deployment and CI/CD Pipeline
+# SWE 645 – Kubernetes Deployment Project
+
+## Student Information
+
+**Name:** Surya Pavan Kumar Chilukuri
+**Course:** SWE 645 – Software Engineering for Web Applications
+**University:** George Mason University
+**Semester:** Spring 2026
 
 ---
 
-## 1. Overview
+# Project Overview
 
-This project demonstrates the implementation of a containerized static web application deployed using Kubernetes with a basic CI/CD pipeline integrated through Jenkins. The assignment extends the functionality of Assignment 1 by incorporating DevOps practices including containerization, orchestration, and automation.
+This project demonstrates the deployment of a containerized web application using modern DevOps tools and cloud infrastructure.
 
-The project includes:
+The application is containerized using **Docker**, automated through a **Jenkins CI/CD pipeline**, and deployed to a **Kubernetes cluster running on AWS EC2**. Kubernetes manages multiple replicas of the application and exposes it externally through a NodePort service.
 
-* Static web application (homepage and survey form)
-* Docker-based containerization
-* Image publishing to Docker Hub
-* Kubernetes deployment with multiple replicas
-* Service exposure and resiliency validation
-* Jenkins pipeline integrated with GitHub
+The project showcases key DevOps concepts including containerization, continuous integration, automated deployment, scalability, and fault tolerance.
 
 ---
 
-## 2. Application Description
+# Technologies Used
 
-The web application consists of:
-
-* **Homepage (index.html):** A class homepage containing personal information and an image
-* **Survey Page (survey.html):** A student survey form capturing required inputs
-* Navigation between homepage and survey page
-* Static assets including profile image
-
-The application is served through an Nginx container.
+* Docker
+* DockerHub
+* Kubernetes (k3s)
+* Jenkins
+* AWS EC2
+* HTML / Bootstrap
+* kubectl CLI
 
 ---
 
-## 3. Docker Implementation
+# Application Description
 
-### 3.1 Dockerfile
+The application is a simple student survey website developed using HTML and Bootstrap. It consists of a homepage and a survey form that allows users to provide feedback.
 
-A Dockerfile was created using the Nginx base image to host the static web application.
+The application files are packaged into a Docker container and served through a lightweight web server.
 
-### 3.2 Build Docker Image
+---
+
+# System Architecture
+
+```
+User Browser
+     ↓
+AWS EC2 Instance
+     ↓
+Kubernetes Cluster (k3s)
+     ↓
+NodePort Service
+     ↓
+ReplicaSet
+     ↓
+3 Pods
+     ↓
+Docker Container
+     ↓
+Web Application
+```
+
+This architecture ensures scalability and reliability by running multiple instances of the application.
+
+---
+
+# Docker Containerization
+
+The web application was containerized using Docker. The Dockerfile defines the instructions required to build the container image.
+
+## Build Docker Image
 
 ```bash
 docker build -t surya100599/swe645-survey:v1 .
 ```
 
-### 3.3 Run Container Locally
-
-```bash
-docker run -p 8080:80 surya100599/swe645-survey
-```
-
-Application verified at:
-
-```
-http://localhost:8080
-```
-
-### 3.4 Push Image to Docker Hub
+## Push Docker Image to DockerHub
 
 ```bash
 docker push surya100599/swe645-survey:v1
 ```
 
-Docker Hub repository:
+DockerHub Repository:
+
+[https://hub.docker.com/r/surya100599/swe645-survey](https://hub.docker.com/r/surya100599/swe645-survey)
+
+---
+
+# Kubernetes Deployment
+
+The application is deployed to Kubernetes using two configuration files:
 
 ```
-https://hub.docker.com/r/surya100599/swe645-survey
+deployment.yaml
+service.yaml
+```
+
+## Deployment
+
+The deployment creates **three replicas** of the application container.
+
+```yaml
+replicas: 3
+image: surya100599/swe645-survey:v1
+containerPort: 80
+```
+
+## Service
+
+A **NodePort service** exposes the application externally.
+
+```
+nodePort: 30007
 ```
 
 ---
 
-## 4. Kubernetes Deployment
+# Deployment Commands
 
-### 4.1 Deployment Configuration
-
-A Kubernetes Deployment was created with:
-
-* 3 replicas
-* Container image from Docker Hub
-* Label selectors for pod management
-
-Deployment file:
-
-```
-k8s/deployment.yaml
-```
-
-Deployment command:
+## Apply Deployment
 
 ```bash
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f deployment.yaml
 ```
 
-### 4.2 Service Configuration
-
-A NodePort service was created to expose the application externally.
-
-Service file:
-
-```
-k8s/service.yaml
-```
-
-Command:
+## Apply Service
 
 ```bash
-kubectl apply -f k8s/service.yaml
+kubectl apply -f service.yaml
 ```
 
-### 4.3 Application Access
-
-Application access verified using port forwarding:
+## Verify Pods
 
 ```bash
-kubectl port-forward service/swe645-service 8081:80
+kubectl get pods
 ```
 
-Access URL:
+## Verify Services
+
+```bash
+kubectl get svc
+```
+
+---
+
+# CI/CD Pipeline
+
+A Jenkins pipeline was implemented to automate the build and deployment process.
+
+Pipeline stages include:
+
+1. Pull source code
+2. Build Docker image
+3. Push Docker image to DockerHub
+4. Deploy application to Kubernetes
+5. Verify deployment
+
+The pipeline is defined using a **Jenkinsfile**.
+
+---
+
+# Application Access
+
+Once deployed, the application can be accessed using the public IP address of the AWS EC2 instance.
 
 ```
-http://localhost:8081
+http://44.223.66.61:30007
 ```
 
-### 4.4 Resiliency Validation
+---
 
-Resiliency was validated by deleting a running pod:
+# Kubernetes Self-Healing
+
+Kubernetes automatically replaces failed pods to maintain the desired number of replicas.
+
+Example command used for testing:
 
 ```bash
 kubectl delete pod <pod-name>
 ```
 
-Kubernetes automatically recreated the pod, confirming self-healing behavior.
+A new pod is automatically created by Kubernetes.
 
 ---
 
-## 5. CI/CD Pipeline Implementation
-
-### 5.1 Source Control
-
-Project repository:
+# Project Structure
 
 ```
-https://github.com/Pavan123ch/swe645-assignment2
-```
-
-### 5.2 Jenkins Setup
-
-Jenkins was deployed using Docker and configured locally for pipeline execution.
-
-### 5.3 Pipeline Configuration
-
-A Jenkins pipeline was created that:
-
-* Pulls source code from GitHub
-* Executes defined pipeline stages
-* Demonstrates CI/CD workflow integration
-
-Pipeline definition stored in:
-
-```
-Jenkinsfile
-```
-
-Pipeline execution completed successfully.
-
----
-
-## 6. Project Structure
-
-```
-SWE 645-Assignment 2/
+SWE645-Assignment2
 │
-├── index.html
-├── survey.html
-├── Profile.jpg
-├── Dockerfile
-├── Jenkinsfile
-├── README.md
-└── k8s/
-    ├── deployment.yaml
-    └── service.yaml
+├── src/
+│   ├── index.html
+│   ├── survey.html
+│   └── Profile.jpg
+│
+├── docker/
+│   └── Dockerfile
+│
+├── cicd/
+│   └── Jenkinsfile
+│
+├── k8s/
+│   ├── deployment.yaml
+│   └── service.yaml
+│
+├── screenshots/
+│
+└── README.md
 ```
 
 ---
 
-## 7. Screenshots
+# Conclusion
 
-### Homepage Running
+This project demonstrates how Docker, Jenkins, Kubernetes, and AWS can be used together to build a scalable and automated application deployment pipeline.
 
-![Homepage](Screenshots/hompage.png)
+Containerization ensures consistent application environments, Kubernetes provides orchestration and fault tolerance, and Jenkins automates the deployment workflow.
 
-### Docker Hub Repository
-
-![DockerHub](Screenshots/dockerhub.png)
-
-### Kubernetes Pods Running
-
-![Pods](Screenshots/pods.png)
-
-### Pod Auto-Healing
-
-![Autoheal](Screenshots/autoheal.png)
-
-### Jenkins Pipeline Success
-
-![Jenkins](Screenshots/jenkins.png)
-
+The implementation highlights modern DevOps practices used in real-world cloud-native application development.
 
 ---
-
-## 8. Conclusion
-
-This assignment successfully demonstrates modern DevOps practices including containerization, orchestration, and CI/CD automation. The implementation validates application availability, scalability, and deployment reproducibility using Docker, Kubernetes, and Jenkins.
-
----
-
-**Author:** Surya Pavan Kumar Chilukuri
-**Course:** SWE 645 – Software Engineering for the Web
-**Assignment:** Homework Assignment 2
